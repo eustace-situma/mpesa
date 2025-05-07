@@ -43,7 +43,7 @@
   <script>
     async function pay() {
       const phone = document.getElementById('phone').value;
-      const res = await fetch('/pay', {
+      const res = await fetch('https://mpesa-eustaces-projects-4d6348a3.vercel.app/pay', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
