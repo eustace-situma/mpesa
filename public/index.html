@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy My Book</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 3rem;
+      background: #f4f4f4;
+    }
+    .book {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="book">
+    <h1>Buy My Awesome Book</h1>
+    <p>Price: KES 500</p>
+    <input type="text" id="phone" placeholder="Enter phone number" />
+    <br/>
+    <button onclick="pay()">Buy Now with M-Pesa</button>
+  </div>
+
+  <script>
+    async function pay() {
+      const phone = document.getElementById('phone').value;
+      const res = await fetch('/pay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ phone })
+      });
+
+      const result = await res.json();
+      alert(result.message);
+    }
+  </script>
+</body>
+</html>
